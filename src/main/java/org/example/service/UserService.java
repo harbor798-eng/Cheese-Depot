@@ -23,4 +23,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User getById(Integer id){
+        System.out.println("查询id = " + id);
+
+        User user = userRepository.findById(id).orElse(null);
+
+        System.out.println("查询结果 = " + user);
+
+        return user;
+    }
+
 }
