@@ -33,4 +33,35 @@ public class UserService {
         return user;
     }
 
+    public User update(Integer id, User user){
+
+        User oldUser = userRepository.findById(id)
+                .orElse(null);
+
+        if(oldUser == null){
+            return null;
+        }
+
+        oldUser.setName(user.getName());
+        oldUser.setAge(user.getAge());
+
+        return userRepository.save(oldUser);
+    }
+
+    public boolean delete(Integer id){
+
+
+        if(userRepository.existsById(id)){
+
+
+            userRepository.deleteById(id);
+
+            return true;
+
+        }
+
+
+        return false;
+
+    }
 }
