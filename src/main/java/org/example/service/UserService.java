@@ -1,6 +1,8 @@
 package org.example.service;
 
+import org.example.dto.UserDTO;
 import org.example.entity.User;
+import org.example.exception.BusinessException;
 import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +25,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getById(Integer id){
-        System.out.println("查询id = " + id);
+    public UserDTO getById(Integer id){
 
-        User user = userRepository.findById(id).orElse(null);
 
-        System.out.println("查询结果 = " + user);
+        User user = userRepository.findById(id)
+                .orElseThrow(
+                        () -> new BusinessException("用户不存在")
+                );
 
-        return user;
+
+        return new UserDTO(
+                user.getName(),
+                user.getAge()
+        );
+
     }
 
     public User update(Integer id, User user){

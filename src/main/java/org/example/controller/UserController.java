@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.UserDTO;
 import org.example.entity.ResponseResult;
 import org.example.entity.User;
 import org.example.service.UserService;
@@ -35,28 +36,17 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseResult<User> getById(
+    public ResponseResult<UserDTO> getById(
             @PathVariable Integer id){
 
 
-        User user = userService.getById(id);
-
-
-        if(user == null){
-
-            return new ResponseResult<>(
-                    404,
-                    "用户不存在",
-                    null
-            );
-
-        }
+        UserDTO userDTO = userService.getById(id);
 
 
         return new ResponseResult<>(
                 200,
                 "查询成功",
-                user
+                userDTO
         );
 
     }
