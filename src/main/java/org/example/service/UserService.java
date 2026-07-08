@@ -35,8 +35,10 @@ public class UserService {
 
 
         return new UserDTO(
-                user.getName(),
-                user.getAge()
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCreateTime()
         );
 
     }
@@ -50,8 +52,10 @@ public class UserService {
             return null;
         }
 
-        oldUser.setName(user.getName());
-        oldUser.setAge(user.getAge());
+        oldUser.setId(user.getId());
+        oldUser.setUsername(user.getUsername());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setCreateTime(user.getCreateTime());
 
         return userRepository.save(oldUser);
     }

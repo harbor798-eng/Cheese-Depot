@@ -1,34 +1,55 @@
 package org.example.dto;
 
 
+import java.time.LocalDateTime;
+
+
 public class UserDTO {
 
 
-    private String name;
+    private Integer id;
 
+    private String username;
 
-    private Integer age;
+    private String email;
 
+    private LocalDateTime createTime;
 
-    public UserDTO(String name,Integer age){
+//    @Override
+//    public String toString();
 
-        this.name=name;
-        this.age=age;
+    public UserDTO(
+            Integer id,
+            String username,
+            String email,
+            LocalDateTime createTime
+    ){
+
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.createTime = createTime;
 
     }
 
 
-    public String getName(){
-
-        return name;
-
+    public Integer getId(){
+        return id;
     }
 
 
-    public Integer getAge(){
+    public String getUsername(){
+        return username;
+    }
 
-        return age;
 
+    public String getEmail(){
+        return email;
+    }
+
+
+    public LocalDateTime getCreateTime(){
+        return createTime;
     }
 
 }
