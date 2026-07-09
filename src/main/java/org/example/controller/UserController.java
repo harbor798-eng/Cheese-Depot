@@ -35,12 +35,29 @@ public class UserController {
         return userService.add(user);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/{id:\\d+}")
     public ResponseResult<UserDTO> getById(
             @PathVariable Integer id){
 
 
         UserDTO userDTO = userService.getById(id);
+
+
+        return new ResponseResult<>(
+                200,
+                "查询成功",
+                userDTO
+        );
+
+    }
+
+    @GetMapping("/users/me")
+    public ResponseResult<UserDTO> getCurrentUser(){
+
+        System.out.println("进入/users/me接口");
+
+        UserDTO userDTO =
+                userService.getCurrentUser();
 
 
         return new ResponseResult<>(

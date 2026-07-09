@@ -5,6 +5,7 @@ import org.example.entity.User;
 import org.example.exception.BusinessException;
 import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.example.utils.SecurityUtil;
 
 import java.util.List;
 
@@ -76,4 +77,39 @@ public class UserService {
         return false;
 
     }
+
+    /**
+     * 获取当前登录用户信息
+     */
+    public UserDTO getCurrentUser(){
+
+
+        // 获取当前登录用户id
+        Integer userId = SecurityUtil.getUserId();
+
+
+        if(userId == null){
+
+            throw new BusinessException("用户未登录");
+
+        }
+
+
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(
+                        () -> new BusinessException("用户不存在")
+                );
+
+
+
+        return new UserDTO(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCreateTime()
+        );
+
+    }
+
 }
