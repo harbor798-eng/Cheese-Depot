@@ -2,10 +2,12 @@ package org.example.service;
 
 import org.example.dto.UserDTO;
 import org.example.entity.User;
+import org.example.dto.UpdateUserDTO;
+import org.example.utils.SecurityUtil;
 import org.example.exception.BusinessException;
 import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.example.utils.SecurityUtil;
+
 
 import java.util.List;
 
@@ -108,6 +110,53 @@ public class UserService {
                 user.getUsername(),
                 user.getEmail(),
                 user.getCreateTime()
+        );
+
+    }
+
+    /**
+     * 修改当前登录用户信息
+     */
+    public UserDTO updateCurrentUser(UpdateUserDTO dto){
+
+
+        // 获取当前登录用户id
+        Integer userId = SecurityUtil.getUserId();
+
+
+        if(userId == null){
+
+            throw new BusinessException("用户未登录");
+
+        }
+
+
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(
+                        () -> new BusinessException("用户不存在")
+                );
+
+
+
+        // 修改允许修改的字段
+
+        user.setUsername(dto.getUsername());
+
+        user.setEmail(dto.getEmail());
+
+
+
+        User saveUser =
+                userRepository.save(user);
+
+
+
+        return new UserDTO(
+                saveUser.getId(),
+                saveUser.getUsername(),
+                saveUser.getEmail(),
+                saveUser.getCreateTime()
         );
 
     }

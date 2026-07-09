@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.dto.UserDTO;
+import org.example.dto.UpdateUserDTO;
 import org.example.entity.ResponseResult;
 import org.example.entity.User;
 import org.example.service.UserService;
@@ -46,6 +47,25 @@ public class UserController {
         return new ResponseResult<>(
                 200,
                 "查询成功",
+                userDTO
+        );
+
+    }
+
+    @PutMapping("/users/me")
+    public ResponseResult<UserDTO> updateCurrentUser(
+            @RequestBody UpdateUserDTO dto
+    ){
+
+        System.out.println("进入修改用户接口");
+
+        UserDTO userDTO =
+                userService.updateCurrentUser(dto);
+
+
+        return new ResponseResult<>(
+                200,
+                "修改成功",
                 userDTO
         );
 
