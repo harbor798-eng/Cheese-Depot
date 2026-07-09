@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.UpdatePasswordDTO;
 import org.example.dto.UserDTO;
 import org.example.dto.UpdateUserDTO;
 import org.example.entity.ResponseResult;
@@ -67,6 +68,22 @@ public class UserController {
                 200,
                 "修改成功",
                 userDTO
+        );
+
+    }
+
+    @PutMapping("/users/password")
+    public ResponseResult<Void> updatePassword(
+            @RequestBody UpdatePasswordDTO dto
+    ){
+
+        userService.updatePassword(dto);
+
+
+        return new ResponseResult<>(
+                200,
+                "密码修改成功",
+                null
         );
 
     }
