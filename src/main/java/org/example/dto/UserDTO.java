@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class UserDTO {
 
 
-    private Integer id;
+    private Long id;
 
     private String username;
 
@@ -19,7 +19,7 @@ public class UserDTO {
 //    public String toString();
 
     public UserDTO(
-            Integer id,
+            Long id,
             String username,
             String email,
             LocalDateTime createTime
@@ -33,7 +33,7 @@ public class UserDTO {
     }
 
 
-    public Integer getId(){
+    public Long getId(){
         return id;
     }
 

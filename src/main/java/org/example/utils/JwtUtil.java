@@ -29,7 +29,7 @@ public class JwtUtil {
     /**
      * 生成token
      */
-    public static String createToken(Integer userId){
+    public static String createToken(Long userId){
 
 
         return Jwts.builder()
@@ -62,7 +62,7 @@ public class JwtUtil {
     /**
      * 解析token
      */
-    public static Integer getUserId(String token){
+    public static Long getUserId(String token){
 
 
         Claims claims =
@@ -77,7 +77,7 @@ public class JwtUtil {
                         .getBody();
 
 
-        return claims.get("userId", Integer.class);
+        return claims.get("userId", Long.class);
 
     }
 

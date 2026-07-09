@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter
 
             //3. 解析token
 
-            Integer userId =
+            Long userId =
                     JwtUtil.getUserId(token);
 
 

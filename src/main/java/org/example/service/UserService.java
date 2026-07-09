@@ -32,7 +32,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public UserDTO getById(Integer id){
+    public UserDTO getById(Long id){
 
 
         User user = userRepository.findById(id)
@@ -50,7 +50,7 @@ public class UserService {
 
     }
 
-    public User update(Integer id, User user){
+    public User update(Long id, User user){
 
         User oldUser = userRepository.findById(id)
                 .orElse(null);
@@ -67,7 +67,7 @@ public class UserService {
         return userRepository.save(oldUser);
     }
 
-    public boolean delete(Integer id){
+    public boolean delete(Long id){
 
 
         if(userRepository.existsById(id)){
@@ -90,23 +90,20 @@ public class UserService {
     public UserDTO getCurrentUser(){
 
 
-        // 获取当前登录用户id
-        Integer userId = SecurityUtil.getUserId();
+        Long userId = SecurityUtil.getUserId();
 
 
         if(userId == null){
 
-            throw new BusinessException(401,"用户未登录");
+            throw new BusinessException(400,"用户未登录");
 
         }
-
 
 
         User user = userRepository.findById(userId)
                 .orElseThrow(
                         () -> new BusinessException(404,"用户不存在")
                 );
-
 
 
         return new UserDTO(
@@ -118,6 +115,9 @@ public class UserService {
 
     }
 
+
+
+
     /**
      * 修改当前登录用户信息
      */
@@ -125,7 +125,7 @@ public class UserService {
 
 
         // 获取当前登录用户id
-        Integer userId = SecurityUtil.getUserId();
+        Long userId = SecurityUtil.getUserId();
 
 
         if(userId == null){
@@ -169,7 +169,7 @@ public class UserService {
 
 
         // 获取当前用户id
-        Integer userId = SecurityUtil.getUserId();
+        Long userId = SecurityUtil.getUserId();
 
 
         if(userId == null){

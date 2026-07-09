@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("/users/{id:\\d+}")
     public ResponseResult<UserDTO> getById(
-            @PathVariable Integer id){
+            @PathVariable Long id){
 
 
         UserDTO userDTO = userService.getById(id);
@@ -110,14 +110,14 @@ public class UserController {
 
     @PutMapping("/users/{id}")
     public User update(
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestBody User user){
 
         return userService.update(id,user);
     }
 
     @DeleteMapping("/users/{id}")
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable Long id){
 
         userService.delete(id);
 

@@ -11,27 +11,19 @@ public class SecurityUtil {
     /**
      * 获取当前登录用户id
      */
-    public static Integer getUserId(){
+    public static Long getUserId(){
 
-
-        Authentication authentication =
+        return (Long)
                 SecurityContextHolder
                         .getContext()
-                        .getAuthentication();
-
-
-
-        if(authentication == null){
-
-            return null;
-
-        }
-
-
-
-        return (Integer) authentication.getPrincipal();
+                        .getAuthentication()
+                        .getPrincipal();
 
     }
+
+
+
+
 
 
 }
