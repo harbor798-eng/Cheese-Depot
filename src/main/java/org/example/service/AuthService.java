@@ -40,7 +40,7 @@ public class AuthService {
 
         if(existUser != null){
 
-            throw new BusinessException("用户名已存在");
+            throw new BusinessException(409,"用户名已存在");
 
         }
 
@@ -79,7 +79,7 @@ public class AuthService {
 
         if(user == null){
 
-            throw new BusinessException("用户不存在");
+            throw new BusinessException(404,"用户不存在");
 
         }
 
@@ -93,7 +93,7 @@ public class AuthService {
         )){
 
 
-            throw new BusinessException("密码错误");
+            throw new BusinessException(400,"密码错误");
 
         }
 

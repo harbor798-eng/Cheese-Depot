@@ -37,7 +37,7 @@ public class UserService {
 
         User user = userRepository.findById(id)
                 .orElseThrow(
-                        () -> new BusinessException("用户不存在")
+                        () -> new BusinessException(404,"用户不存在")
                 );
 
 
@@ -96,7 +96,7 @@ public class UserService {
 
         if(userId == null){
 
-            throw new BusinessException("用户未登录");
+            throw new BusinessException(401,"用户未登录");
 
         }
 
@@ -104,7 +104,7 @@ public class UserService {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(
-                        () -> new BusinessException("用户不存在")
+                        () -> new BusinessException(404,"用户不存在")
                 );
 
 
@@ -130,7 +130,7 @@ public class UserService {
 
         if(userId == null){
 
-            throw new BusinessException("用户未登录");
+            throw new BusinessException(401,"用户未登录");
 
         }
 
@@ -138,7 +138,7 @@ public class UserService {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(
-                        () -> new BusinessException("用户不存在")
+                        () -> new BusinessException(404,"用户不存在")
                 );
 
 
@@ -174,7 +174,7 @@ public class UserService {
 
         if(userId == null){
 
-            throw new BusinessException("用户未登录");
+            throw new BusinessException(401,"用户未登录");
 
         }
 
@@ -182,7 +182,7 @@ public class UserService {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(
-                        () -> new BusinessException("用户不存在")
+                        () -> new BusinessException(404,"用户不存在")
                 );
 
 
@@ -198,7 +198,7 @@ public class UserService {
 
         if(!matches){
 
-            throw new BusinessException("旧密码错误");
+            throw new BusinessException(400,"旧密码错误");
 
         }
 

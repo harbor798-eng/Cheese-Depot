@@ -4,9 +4,25 @@ package org.example.exception;
 public class BusinessException extends RuntimeException {
 
 
-    public BusinessException(String message){
+    private Integer code;
+
+
+    public BusinessException(
+            Integer code,
+            String message
+    ){
 
         super(message);
+
+        this.code = code;
+
+    }
+
+
+
+    public Integer getCode(){
+
+        return code;
 
     }
 

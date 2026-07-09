@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import org.example.dto.LoginDTO;
 import org.example.dto.LoginResponseDTO;
 import org.example.dto.RegisterDTO;
@@ -28,9 +29,10 @@ public class AuthController {
     }
 
 
-//前端不返回密码
+    //前端不返回密码
     @PostMapping("/register")
     public ResponseResult<UserDTO> register(
+            @Valid
             @RequestBody RegisterDTO dto){
 
         System.out.println("进入注册接口");
@@ -54,6 +56,7 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResponseResult<LoginResponseDTO> login(
+            @Valid
             @RequestBody LoginDTO dto
     ){
 

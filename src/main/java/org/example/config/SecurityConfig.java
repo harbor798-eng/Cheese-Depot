@@ -30,7 +30,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         //白名单
-                        .requestMatchers("/auth/register","/auth/login")
+                        .requestMatchers("/auth/**")
                         .permitAll()
 
                         .anyRequest()

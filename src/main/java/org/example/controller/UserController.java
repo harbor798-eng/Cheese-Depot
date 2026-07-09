@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import org.example.dto.UpdatePasswordDTO;
 import org.example.dto.UserDTO;
 import org.example.dto.UpdateUserDTO;
@@ -55,6 +56,7 @@ public class UserController {
 
     @PutMapping("/users/me")
     public ResponseResult<UserDTO> updateCurrentUser(
+            @Valid
             @RequestBody UpdateUserDTO dto
     ){
 
@@ -74,6 +76,7 @@ public class UserController {
 
     @PutMapping("/users/password")
     public ResponseResult<Void> updatePassword(
+            @Valid
             @RequestBody UpdatePasswordDTO dto
     ){
 
